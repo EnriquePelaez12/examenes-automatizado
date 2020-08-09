@@ -12,4 +12,9 @@ export class SuiPage implements OnInit {
   ngOnInit() {
   }
 
+  btnClicked() {
+    console.log("Google button clicado")
+    alert("Vamos a inicio papa")
+  }
+
 }
