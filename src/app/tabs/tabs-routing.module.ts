@@ -9,19 +9,39 @@ const routes: Routes = [
     children: [
       {
         path: 'inicio',
-        loadChildren: () => import('../inicio/inicio.module').then(m => m.InicioPageModule)
+        children: [
+          {
+              path: '',
+               loadChildren: () => import('../inicio/inicio.module').then(m => m.InicioPageModule)
+          }
+              ]
       },
       {
         path: 'cursos',
+        children: [
+          {
+              path: '',
         loadChildren: () => import('../cursos/cursos.module').then(m => m.CursosPageModule)
+          }   
+      ]
       },
       {
         path: 'consejos',
+        children: [
+          {
+              path: '',
         loadChildren: () => import('../consejos/consejos.module').then(m => m.ConsejosPageModule)
+          }
+          ]
       },
       {
         path: 'mas',
+        children: [
+          {
+              path: '',
         loadChildren: () => import('../mas/mas.module').then(m => m.MasPageModule)
+          }
+          ]
       },
       {
         path: '',

@@ -17,4 +17,14 @@ export class SuiPage implements OnInit {
     alert("Vamos a inicio papa")
   }
 
+  crearcuenta() {
+    console.log("Crear cuenta cliclado")
+    alert("Vamos a signup")
+  }
+
+  login() {
+    console.log("Login cliclado")
+    alert("Vamos a login")
+  }
+
 }
