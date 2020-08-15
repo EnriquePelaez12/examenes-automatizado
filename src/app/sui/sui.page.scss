@@ -1,0 +1,113 @@
+ion-content {
+    --background: url(../../assets/img/iPhone 8 - 3.png) no-repeat;
+}
+
+.actions {
+
+    position: absolute;
+    width: 90%;
+    bottom: 16px;
+    
+}
+
+ion-button {
+    --border-radius: 9px;
+    --box-shadow: none;
+    text-transform: initial;
+    font-size: 14px;
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: center;
+
+   ion-button {
+        width: 45%;
+        --background: #fefefe;
+        --color: #000000;
+        --border-style: solid;
+        --border-color: #fefefe;
+        --border-width: 0.5px;
+
+        p{
+            font-size: 14px;
+        }
+         
+    }
+
+    ion-icon {
+        height: 25px;
+        width: 25px;
+        margin-right: 18px;
+        margin-bottom: 1px;
+    }
+
+   /* ion-avatar {
+        height: 30px;
+        width: 30px;
+        margin-right: 7px;
+        margin-bottom: 1px;
+    }*/
+
+}
+
+.separator {
+    display: flex;
+    justify-content: center;
+    margin: 8px auto 10px;
+    font-size: 14px;
+    position: relative;
+    color: #ffffff;
+
+
+
+    .line {
+        position: absolute;
+        border-top: 1px solid #dfdfdf;
+        width: 50px;
+        height: 2px;
+        top: 8px;
+        
+    }
+
+    .right {
+        right: 98px;
+    }
+
+    .left {
+        left: 98px;
+    }
+
+}
+
+.signup-btn {
+    //--background: linear-gradient(90deg,#000000 0%, #c4e631 100%);
+    --background: #000000;
+}
+
+.login {
+
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #ffffff;
+    //font-family: Noto Sans;
+     
+
+    a{
+        color: #ffffff;
+        font-weight: 400;
+        margin-left: 5px;
+
+        
+
+    }
+
+}
+
+
+
+
+
+
+
