@@ -6,7 +6,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./sui/sui.module').then(m => m.SuiPageModule)
   },
-  
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
