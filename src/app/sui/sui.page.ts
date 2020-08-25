@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sui',
@@ -7,24 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuiPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  
+  navigateToFeed() {
+    console.log("Crear cuenta cliclado")
+    alert("Vamos a la app")
+    this.router.navigate(["tabs/inicio"]);
   }
 
-  btnClicked() {
-    console.log("Google button clicado")
-    alert("Vamos a inicio papa")
-  }
-
-  crearcuenta() {
+  navigateToSignup() {
     console.log("Crear cuenta cliclado")
     alert("Vamos a signup")
+    this.router.navigate(["signup"]);
   }
 
-  login() {
+  navigateToLogin() {
     console.log("Login cliclado")
     alert("Vamos a login")
+    this.router.navigate(["login"]);
+  }
+
+  ngOnInit() {
   }
 
 }

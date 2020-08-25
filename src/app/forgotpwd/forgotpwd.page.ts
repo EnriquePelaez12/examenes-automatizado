@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpwd',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotpwdPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  navigateToHome(){
+    console.log("reset pass button clicado")
+    alert("Nos vamos para la app")
+    this.router.navigate(["tabs/inicio"]);
+  }
 
   ngOnInit() {
   }
