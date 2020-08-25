@@ -3,7 +3,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
         <div class="actions">
             <div class="login-buttons">
-                <ion-button (click)="btnClicked()" routerLink="/inicio">
+                <ion-button (click)="navigateToFeed()">
                     <ion-icon name="logo-google"></ion-icon>
                     <p>Google</p>
                   </ion-button>            
@@ -14,7 +14,7 @@
                 <span class="line right"></span>
             </div>
         
-            <ion-button class="signup-btn" (click)="crearcuenta()" routerLink="/signup" expand="block">Crear cuenta</ion-button>
-            <p class="login" (click)="login()" routerLink="/login">¿Ya tienes una cuenta? <a>Iniciar sesión</a></p>
+            <ion-button class="signup" (click)="navigateToSignup()" expand="block">Crear cuenta</ion-button>
+            <p class="login" (click)="navigateToLogin()">¿Ya tienes una cuenta? <a>Iniciar sesión</a></p>
         </div>
 </ion-content>

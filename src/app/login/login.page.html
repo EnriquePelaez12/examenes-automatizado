@@ -11,6 +11,6 @@
   <ion-item>  
   <ion-input placeholder='Contraseña'></ion-input>
   </ion-item>
-  <ion-button class="login-btn" (click)="iniciarsesion()" routerLink="/inicio" expand="block">Iniciar sesión</ion-button>
-  <p class="forgot" (click)="olvide()" routerLink="/forgotpwd">¿Has olvidado tu contraseña?</p>
+  <ion-button class="login-btn" (click)="navigateToHome()" expand="block">Iniciar sesión</ion-button>
+  <p class="forgot-btn" (click)="navigateToResetPass()">¿Has olvidado tu contraseña?</p>
 </ion-content>

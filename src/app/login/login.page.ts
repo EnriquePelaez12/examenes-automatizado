@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -7,17 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  iniciarsesion(){
+  
+  navigateToHome(){
     console.log("iniciar sesion button clicado")
     alert("Nos vamos para la app")
+    this.router.navigate(["tabs/inicio"]);
   }
-  olvide(){
+  
+  navigateToResetPass(){
     console.log("forgot button clicado")
     alert("Olvidé la contraseña loco")
+    this.router.navigate(["forgotpwd"]);
+
   }
 
 }
