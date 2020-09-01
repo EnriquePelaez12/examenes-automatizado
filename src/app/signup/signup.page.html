@@ -1,28 +1,27 @@
 <ion-header>
-  <ion-toolbar>
-    
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start" class="back-button">
       <ion-back-button text=""></ion-back-button>      
     </ion-buttons>
   <ion-title>Crear cuenta</ion-title>
-</ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center">
   <ion-item>  
-    <ion-input placeholder='Nombre'></ion-input>
+    <ion-input placeholder='Nombre' type="text"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Apellidos'></ion-input>
+    <ion-input placeholder='Apellidos' type="text"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Correo electrónico'></ion-input>
+    <ion-input placeholder='Correo electrónico' type="email"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Contraseña'></ion-input>
+    <ion-input placeholder='Contraseña' type="password"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Confirmar Contraseña'></ion-input>
+    <ion-input placeholder='Confirmar Contraseña' type="password"></ion-input>
   </ion-item>
   <ion-button class="signup-btn" (click) = navigateToHome() expand="block">Crear cuenta</ion-button>
 </ion-content>
