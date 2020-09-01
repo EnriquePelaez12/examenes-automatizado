@@ -1,15 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Iniciar sesión</ion-title>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" class="back-button">
+      <ion-back-button text=""></ion-back-button>      
+    </ion-buttons>
+  <ion-title>Iniciar sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center">
   <ion-item>  
-  <ion-input placeholder='Correo electrónico'></ion-input>
+  <ion-input placeholder='Correo electrónico' type="email"></ion-input>
   </ion-item>
   <ion-item>  
-  <ion-input placeholder='Contraseña'></ion-input>
+  <ion-input placeholder='Contraseña' type="password"></ion-input>
   </ion-item>
   <ion-button class="login-btn" (click)="navigateToHome()" expand="block">Iniciar sesión</ion-button>
   <p class="forgot-btn" (click)="navigateToResetPass()">¿Has olvidado tu contraseña?</p>

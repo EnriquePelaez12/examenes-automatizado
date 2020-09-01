@@ -1,8 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Olvidé mi contraseña</ion-title>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" class="back-button">
+      <ion-back-button text=""></ion-back-button>      
+    </ion-buttons>
+  <ion-title>Olvidé la contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content class="ion-padding ion-text-center">
   <ion-item>  
@@ -14,5 +18,5 @@
   <ion-item>  
     <ion-input placeholder='Confirmar Contraseña'></ion-input>
   </ion-item>
-  <ion-button class="password-btn" (click)=navigateToHome() expand="block">Iniciar sesión</ion-button>
+  <ion-button class="password-btn" (click)=navigateToHome() expand="block">Resetear contraseña</ion-button>
 </ion-content>
