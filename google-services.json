@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "16861957262",
+    "firebase_url": "https://fir-tfg-ef104.firebaseio.com",
+    "project_id": "fir-tfg-ef104",
+    "storage_bucket": "fir-tfg-ef104.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16861957262:android:4ad3150655015fcb3c4ddf",
+        "android_client_info": {
+          "package_name": "com.upm.tfg.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16861957262-tuiuf14fu5s2tji8hgv2bvq30itmu6tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTuxSDIf-94Gg--OPvVOvAqTQJxlSgFkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16861957262-tuiuf14fu5s2tji8hgv2bvq30itmu6tr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "16861957262-hpdfvtf4hb6h10bbp1smejtenf9ril70.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upm.tfg.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
