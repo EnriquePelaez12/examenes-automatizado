@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-inicio',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class InicioPage {
 
-  constructor() {}
+  constructor(private authservice: AuthService) {}
+
+
+  logout(){
+    this.authservice.logout();
+  }
 
 }
