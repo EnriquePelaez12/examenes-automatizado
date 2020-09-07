@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-sui',
   templateUrl: './sui.page.html',
@@ -8,14 +8,10 @@ import { Router } from '@angular/router';
 })
 export class SuiPage implements OnInit {
 
-  constructor(private router: Router) { }
+  email: string;
+  password: string;
 
-  
-  navigateToFeed() {
-    console.log("Crear cuenta cliclado")
-    alert("Vamos a la app")
-    this.router.navigate(["tabs/inicio"]);
-  }
+  constructor(private authService: AuthService, public router: Router) { }
 
   navigateToSignup() {
     console.log("Crear cuenta cliclado")
@@ -32,4 +28,24 @@ export class SuiPage implements OnInit {
   ngOnInit() {
   }
 
+  doLogin(){
+    this.authService.login(this.email, this.password).then(() =>{
+      console.log("Crear cuenta cliclado")
+      alert("Vamos a la app")
+      this.router.navigate(["tabs/inicio"]);
+    }).catch(err => {
+      alert("Los datos son incorrectos o no existe el usuario");
+    })
+
+  }
+
+  loginGoogle() {
+    this.authService.loginWithGoogle().then(() =>{
+      console.log("Crear cuenta cliclado")
+      alert("Vamos a la app")
+      this.router.navigate(["tabs/inicio"]);
+    }).catch(err => {
+      alert("Algo salió mal, contacta con soporte");
+    })
+  }
 }
