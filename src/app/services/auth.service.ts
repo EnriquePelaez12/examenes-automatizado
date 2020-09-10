@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   register(email : string, password : string, name : string){
-
+    
     return new Promise ((resolve, reject) => {
       //AngularFire ha eliminado la propiedad auth
       //this.AFauth.auth.createUserWithEmailAndPassword(email, password).then( res =>{

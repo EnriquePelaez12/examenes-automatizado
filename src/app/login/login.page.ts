@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -9,9 +10,23 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router) { }
+  email: string;
+  password: string;
+
+  constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit() {
+  }
+
+  doLogin(){
+    this.authService.login(this.email, this.password).then(() =>{
+      //console.log("Crear cuenta cliclado")
+      //alert("Vamos a la app")
+      this.router.navigate(["tabs/inicio"]);
+    }).catch(err => {
+      alert("Datos incorrectos o no existe el usuario");
+    })
+
   }
   
   navigateToHome(){
