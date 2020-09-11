@@ -9,19 +9,19 @@
 
 <ion-content class="ion-padding ion-text-center">
   <ion-item>  
-    <ion-input placeholder='Nombre' type="text"></ion-input>
+    <ion-input placeholder='Nombre' type="text" [(ngModel)]= "name"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Apellidos' type="text"></ion-input>
+    <ion-input placeholder='Apellidos' type="text" [(ngModel)]= "surnames"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Correo electrónico' type="email"></ion-input>
+    <ion-input placeholder='Correo electrónico' type="email" [(ngModel)]= "email"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Contraseña' type="password"></ion-input>
+    <ion-input placeholder='Contraseña' type="password" [(ngModel)]= "password"></ion-input>
   </ion-item>
   <ion-item>  
-    <ion-input placeholder='Confirmar Contraseña' type="password"></ion-input>
+    <ion-input placeholder='Confirmar Contraseña' type="password" [(ngModel)]= "confirmPassword"></ion-input>
   </ion-item>
-  <ion-button class="signup-btn" (click) = navigateToHome() expand="block">Crear cuenta</ion-button>
+  <ion-button class="signup-btn" (click) = doRegister() expand="block">Crear cuenta</ion-button>
 </ion-content>

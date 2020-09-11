@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+//import { resolve } from 'dns';
+
 
 @Component({
   selector: 'app-forgotpwd',
@@ -8,15 +11,24 @@ import { Router } from '@angular/router';
 })
 export class ForgotpwdPage implements OnInit {
 
-  constructor(private router: Router) { }
+  private email: string = "";
 
-  navigateToHome(){
-    console.log("reset pass button clicado")
-    alert("Nos vamos para la app")
-    this.router.navigate(["tabs/inicio"]);
-  }
+  constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit() {
   }
 
+  sendLinktoEmail(){
+    if(this.email != ""){
+      this.authService.resetPassword(this.email).then(()=>{
+        console.log("Email enviado");
+        alert("Comprueba tu correo electrónico y sigue las instrucciones para resetear tu contraseña");
+      }).catch(()=>{
+        console.log("Error al enviar correo");
+      })
+    }
+    else{
+      alert("Error. Inserte un correo electrónico");
+    } 
+  }
 }

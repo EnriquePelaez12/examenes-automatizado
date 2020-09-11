@@ -29,12 +29,6 @@ export class LoginPage implements OnInit {
 
   }
   
-  navigateToHome(){
-    console.log("iniciar sesion button clicado")
-    alert("Nos vamos para la app")
-    this.router.navigate(["tabs/inicio"]);
-  }
-  
   navigateToResetPass(){
     console.log("forgot button clicado")
     alert("Olvidé la contraseña loco")
