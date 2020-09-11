@@ -36,9 +36,15 @@ export class AuthService {
     })
   }
 
-  register(email : string, password : string, name : string){
-    
-    return new Promise ((resolve, reject) => {
+  register(name:string, surnames:string, email:string, password:string, confirmPassowrd:string){
+    return new Promise((resolve, rejected) =>{
+      this.AFauth.createUserWithEmailAndPassword(email, password).then(user => {
+        resolve(user);
+      }).catch(err => rejected(err));
+    });
+    }
+
+   /*return new Promise ((resolve, reject) => {
       //AngularFire ha eliminado la propiedad auth
       //this.AFauth.auth.createUserWithEmailAndPassword(email, password).then( res =>{
       this.AFauth.createUserWithEmailAndPassword(email, password).then( res =>{
@@ -51,19 +57,20 @@ export class AuthService {
         
         resolve(res)
       }).catch( err => reject(err))
-    })
+    }) 
+  }*/
     
-
-  }
-
   loginWithGoogle(){
     return this.google.login({}).then(result =>{
       const user_data_google = result;
 
     return this.AFauth.signInWithCredential(auth.GoogleAuthProvider.credential(null, user_data_google.accessToken));
     })
+  }
 
 
+  resetPassword(email: string){
+   return this.AFauth.sendPasswordResetEmail(email)
   }
 
 

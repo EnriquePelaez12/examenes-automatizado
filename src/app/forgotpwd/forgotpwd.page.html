@@ -8,15 +8,19 @@
 </ion-header>
 
 
+<!--<ion-content class="ion-padding ion-text-center"> 
+  <form class="ion-padding top" (submit)="sendLinktoEmail()">
+  <ion-item>  
+    <ion-input placeholder='Correo electrónico' type="email" [(ngModel)]= "email"></ion-input>
+  </ion-item>
+  <ion-button class="password-btn" type="submit" expand="block">Resetear contraseña</ion-button>
+</form>
+</ion-content>---->
+
 <ion-content class="ion-padding ion-text-center">
   <ion-item>  
-    <ion-input placeholder='Correo electrónico'></ion-input>
+  <ion-input placeholder='Correo electrónico' type="email" [(ngModel)]= "email"></ion-input>
   </ion-item>
-  <ion-item>  
-    <ion-input placeholder='Nueva Contraseña'></ion-input>
-  </ion-item>
-  <ion-item>  
-    <ion-input placeholder='Confirmar Contraseña'></ion-input>
-  </ion-item>
-  <ion-button class="password-btn" (click)=navigateToHome() expand="block">Resetear contraseña</ion-button>
+  <ion-button class="forgot-btn" (click)="sendLinktoEmail()" expand="block">Resetear contraseña</ion-button>
 </ion-content>
+
