@@ -19,16 +19,16 @@ export class SignupPage implements OnInit {
 
 
   doRegister(){
-
-    this.authService.register(this.name, this.surnames, this.email, this.password, this.confirmPassword).then(auth => {
-    console.log(auth)
-    this.router.navigate(["tabs/inicio"]);
-    }).catch(err => console.log(err));
-    
-
+    if(this.password == this.confirmPassword){
+      this.authService.register(this.name, this.surnames, this.email, this.password, this.confirmPassword).then(auth => {
+      console.log(auth)
+      this.router.navigate(["tabs/inicio"]);
+      }).catch(err => console.log(err));
     }
-
-
+    else{
+      alert("Las contraseñas no coinciden");
+    }
+  }
 
   ngOnInit() {
   }
