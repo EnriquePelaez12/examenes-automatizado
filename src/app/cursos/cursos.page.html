@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-title>Cursos</ion-title>
+    <ion-title>Selecciona un curso</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+
+
+
+  <div class = "ion-padding">
+    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
+      <ion-card-header>
+        <ion-card-title>1º ESO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Nivel Bajo</ion-card-content>
+    </ion-card>
+
+    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
+      <ion-card-header>
+        <ion-card-title>2º ESO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Nivel Intermedio - Bajo</ion-card-content>
+    </ion-card>
+
+    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
+      <ion-card-header>
+        <ion-card-title>3º ESO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Nivel Intermedio - Alto</ion-card-content>
+    </ion-card>
+
+    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
+      <ion-card-header>
+        <ion-card-title>4º ESO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Nivel Alto</ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>
+
+
+

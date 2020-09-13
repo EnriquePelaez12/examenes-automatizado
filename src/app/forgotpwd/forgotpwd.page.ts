@@ -22,13 +22,13 @@ export class ForgotpwdPage implements OnInit {
     if(this.email != ""){
       this.authService.resetPassword(this.email).then(()=>{
         console.log("Email enviado");
-        alert("Comprueba tu correo electrónico y sigue las instrucciones para resetear tu contraseña");
+        alert("Comprueba tu correo electrónico y sigue las instrucciones para resetear tu contraseña.");
       }).catch(()=>{
         console.log("Error al enviar correo");
       })
     }
     else{
-      alert("Error. Inserte un correo electrónico");
+      alert("Inserta tu correo electrónico");
     } 
   }
 }

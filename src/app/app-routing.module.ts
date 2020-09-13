@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: "forgotpwd",
     loadChildren: () => import("./forgotpwd/forgotpwd.module").then( m => m.ForgotpwdPageModule)
+  },
+  {
+    path: 'asignaturas',
+    loadChildren: () => import('./asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
   }
 ];
 @NgModule({

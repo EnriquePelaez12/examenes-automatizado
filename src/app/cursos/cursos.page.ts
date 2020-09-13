@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cursos',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class CursosPage {
 
-  constructor() {}
+  constructor(public router: Router) {}
+
+
+  ngOnInit() {}
+  
+  navigateToAsignaturas(){
+    this.router.navigate(["asignaturas"]);
+
+  }
 
 }
