@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -9,14 +10,19 @@ import { Router } from '@angular/router';
 })
 export class CursosPage {
 
-  constructor(public router: Router) {}
+  constructor(private authservice: AuthService, public router: Router) {}
 
 
   ngOnInit() {}
   
   navigateToAsignaturas(){
     this.router.navigate(["asignaturas"]);
+  }
 
+  
+  logout(){
+    console.log("logout clickado");
+    this.authservice.logout();
   }
 
 }

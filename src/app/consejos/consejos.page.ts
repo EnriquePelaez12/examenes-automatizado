@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-consejos',
@@ -7,6 +9,13 @@ import { Component } from '@angular/core';
 })
 export class ConsejosPage {
 
-  constructor() {}
+  constructor(private authservice: AuthService) {}
+
+  logout(){
+    console.log("logout clickado");
+    this.authservice.logout();
+  }
+
+
 
 }

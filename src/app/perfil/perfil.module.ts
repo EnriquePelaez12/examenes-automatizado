@@ -3,10 +3,10 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MasPage } from './mas.page';
+import { PerfilPage } from './perfil.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
-import { MasPageRoutingModule } from './mas-routing.module'
+import { PerfilPageRoutingModule } from './perfil-routing.module'
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { MasPageRoutingModule } from './mas-routing.module'
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    MasPageRoutingModule,
+    PerfilPageRoutingModule,
   ],
-  declarations: [MasPage]
+  declarations: [PerfilPage]
 })
-export class MasPageModule {}
+export class PerfilPageModule {}

@@ -21,27 +21,16 @@ export class SuiPage implements OnInit {
 
   navigateToLogin() {
     console.log("Login cliclado")
-    alert("Vamos a login")
+    //alert("Vamos a login")
     this.router.navigate(["login"]);
   }
 
   ngOnInit() {
   }
 
-  doLogin(){
-    this.authService.login(this.email, this.password).then(() =>{
-      console.log("Crear cuenta cliclado")
-      alert("Vamos a la app")
-      this.router.navigate(["tabs/inicio"]);
-    }).catch(err => {
-      alert("Los datos son incorrectos o no existe el usuario");
-    })
-
-  }
-
   loginGoogle() {
     this.authService.loginWithGoogle().then(() =>{
-      console.log("Crear cuenta cliclado")
+      console.log("Google cliclado")
       alert("Vamos a la app")
       this.router.navigate(["tabs/inicio"]);
     }).catch(err => {

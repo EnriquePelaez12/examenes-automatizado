@@ -11,8 +11,8 @@ export class InicioPage {
 
   constructor(private authservice: AuthService) {}
 
-
   logout(){
+    console.log("logout clickado");
     this.authservice.logout();
   }
 
