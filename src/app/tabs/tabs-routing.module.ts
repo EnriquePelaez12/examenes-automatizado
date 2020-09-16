@@ -20,8 +20,8 @@ const routes: Routes = [
         loadChildren: () => import("../consejos/consejos.module").then(m => m.ConsejosPageModule)
       },
       {
-        path: "mas",
-        loadChildren: () => import("../mas/mas.module").then(m => m.MasPageModule)
+        path: "perfil",
+        loadChildren: () => import("../perfil/perfil.module").then(m => m.PerfilPageModule)
       },
       {
         path: "",

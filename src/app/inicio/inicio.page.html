@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-title>
-      Inicio
-    </ion-title>
+    <ion-buttons slot="end" (click)="logout()">
+      <ion-button>
+          <ion-icon name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <app-explore-container name="Tab 1 page"></app-explore-container>
-  <ion-button (click)="logout()">Logout</ion-button>
-
 </ion-content>
