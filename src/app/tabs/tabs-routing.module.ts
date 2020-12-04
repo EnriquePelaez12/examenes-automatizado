@@ -12,9 +12,17 @@ const routes: Routes = [
         loadChildren: () => import("../inicio/inicio.module").then(m => m.InicioPageModule)
       },
       {
-        path: "cursos",
+      path: "cursos",
         loadChildren: () => import('../cursos/cursos.module').then(m => m.CursosPageModule)   
       },
+      {
+        path: "cursos/:idCurso",
+          loadChildren: () => import('../cursos/cursos.module').then(m => m.CursosPageModule)   
+        },
+      {
+        path: 'tema/:idTema',
+        loadChildren: () => import('../components/tema/tema.module').then( m => m.TemaPageModule)
+        },
       {
         path: "consejos",
         loadChildren: () => import("../consejos/consejos.module").then(m => m.ConsejosPageModule)

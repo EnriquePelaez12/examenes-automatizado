@@ -41,7 +41,101 @@ const routes: Routes = [
   {
     path: 'asignaturas',
     loadChildren: () => import('./asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
-  }
+  },
+  {
+    path: 'tema',
+    loadChildren: () => import('./components/tema/tema.module').then( m => m.TemaPageModule)
+  },
+  {
+    path: 'tema/:idAsig',
+    loadChildren: () => import('./components/tema/tema.module').then( m => m.TemaPageModule)
+  },
+  {
+    path: 'new-tema',
+    loadChildren: () => import('./components/new-tema/new-tema.module').then( m => m.NewTemaPageModule)
+  },
+  {
+    path: 'new-tema/:idAsig',
+    loadChildren: () => import('./components/new-tema/new-tema.module').then( m => m.NewTemaPageModule)
+  },
+  {
+    path: 'new-examen',
+    loadChildren: () => import('./components/new-examen/new-examen.module').then( m => m.NewExamenPageModule)
+  },
+  {
+    path: 'new-examen/:idDatosE', 
+    loadChildren: () => import('./components/new-examen/new-examen.module').then( m => m.NewExamenPageModule)
+  },
+  {
+    path: 'examen',
+    loadChildren: () => import('./components/examen/examen.module').then( m => m.ExamenPageModule)
+  },
+ /**
+  *  {
+    path: 'examen/:idExamen',
+    loadChildren: () => import('./components/examen/examen.module').then( m => m.ExamenPageModule)
+  },//idDatosE
+  */
+  {
+    path: 'examen/:idDatosE',
+    loadChildren: () => import('./components/examen/examen.module').then( m => m.ExamenPageModule)
+  },
+  {
+    path: 'datos-examen',
+    loadChildren: () => import('./components/datos-examen/datos-examen.module').then( m => m.DatosExamenPageModule)
+  },{
+    path: 'datos-examen/:idDatosE',
+    loadChildren: () => import('./components/datos-examen/datos-examen.module').then( m => m.DatosExamenPageModule)
+  },
+  {
+    path: 'view-result',
+    loadChildren: () => import('./view-result/view-result.module').then( m => m.ViewResultPageModule)
+  },
+  {
+    path: 'view-result/:idDatosE',
+    loadChildren: () => import('./view-result/view-result.module').then( m => m.ViewResultPageModule)
+  },{
+    path: 'edit-perfil',
+    loadChildren: () => import('./components/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
+  },
+  {
+    path: 'edit-perfil/:iud',
+    loadChildren: () => import('./components/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
+  },
+  {
+    path: 'new-curso',
+    loadChildren: () => import('./components/new-curso/new-curso.module').then( m => m.NewCursoPageModule)
+  },
+  {
+    path: 'new-curso/:idCurso',
+    loadChildren: () => import('./components/new-curso/new-curso.module').then( m => m.NewCursoPageModule)
+  },
+  {
+    path: 'new-asignatura',
+    loadChildren: () => import('./components/new-asignatura/new-asignatura.module').then( m => m.NewAsignaturaPageModule)
+  },
+  {
+    path: 'new-asignatura/:idCurso',
+    loadChildren: () => import('./components/new-asignatura/new-asignatura.module').then( m => m.NewAsignaturaPageModule)
+  },
+  // {
+  //   path: 'new-asignatura/:idAsig',
+  //   loadChildren: () => import('./components/new-asignatura/new-asignatura.module').then( m => m.NewAsignaturaPageModule)
+  // },
+  {
+    path: 'asignatura',
+    loadChildren: () => import('./components/asignatura/asignatura.module').then( m => m.AsignaturaPageModule)
+  },
+  // {
+  //   path: 'asignatura/:idAsig',
+  //   loadChildren: () => import('./components/asignatura/asignatura.module').then( m => m.AsignaturaPageModule)
+  // },
+  {
+    path: 'asignatura/:idCurso',
+    loadChildren: () => import('./components/asignatura/asignatura.module').then( m => m.AsignaturaPageModule)
+  },
+
+  
 ];
 @NgModule({
   imports: [

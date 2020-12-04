@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" class="back-button">
+      <ion-back-button text=""></ion-back-button>      
+    </ion-buttons>
+  <ion-title>Temas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" > 
+
+  <ion-item-sliding *ngFor='let tema of temas'>
+  <ion-item (click)="goExamen(tema.idDatosE)" >
+    <ion-label text-wrap >
+      <h2><strong>Tema:</strong> {{ tema.nombre }}</h2>
+      <p><strong>Des:</strong> {{ tema.descripcion }}</p>
+    </ion-label>
+  </ion-item>
+  <!-- <ion-icon  item-start name="create-outline"  [routerLink]="['/new-tema', tema.idTema]" ></ion-icon> -->
+</ion-item-sliding> 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addTema()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>
+

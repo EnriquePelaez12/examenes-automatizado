@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end" routerLink="/tabs/inicio">
+      <ion-button>
+          <ion-icon name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalle del Examen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-card> 
+    <ion-card-content>
+      <!---- Inicia Datos del Examen ----> 
+      <ion-item-sliding >
+        <ion-item >
+          <ion-label text-wrap class="title" >
+            <h2><strong>Tema:</strong></h2>
+            <h2> {{dato.nombre}} </h2>
+            <p><strong>Examen:</strong></p>
+            <p> {{dato.nombreTema}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding> 
+      <!---- Finaliza Datos del Examen ----> 
+
+    <!--- inicia Preguntas  -->
+    <ion-grid class="table table-striped" *ngFor="let examen of examenesResueltos">
+      <hr class="hr"/>
+      <ion-row class="gris">
+        <p><strong>Pregunta N°:</strong></p>
+        <p *ngIf="examen.o1 === true && examen.rcorrecta === 'o1'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>
+        <p *ngIf="examen.o2 === true && examen.rcorrecta === 'o2'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>
+        <p *ngIf="examen.o3 === true && examen.rcorrecta === 'o3'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>
+        <p *ngIf="examen.o1 === false && examen.rcorrecta === 'o1'"><ion-icon class="incorrecto" name="close-outline"></ion-icon></p>
+        <p *ngIf="examen.o2 === false && examen.rcorrecta === 'o2'"><ion-icon class="incorrecto" name="close-outline"></ion-icon></p>
+        <p *ngIf="examen.o3 === false && examen.rcorrecta === 'o3'"><ion-icon class="incorrecto"  name="close-outline"></ion-icon></p>
+        
+  </ion-row>  
+      <ion-row class="gris">
+            {{ examen.pregunta }}
+      </ion-row>  
+      <ion-row class="title" >
+        <ion-col >
+          <p><strong>Tú respuesta:</strong></p> 
+        </ion-col>      
+        <ion-col >
+          <p><strong>Respuesta Correcta:</strong></p> 
+        </ion-col>      
+      </ion-row> 
+      <ion-row class="title gris">
+        <!-- validamos y mostramos a forma de que se puedan visializar las respuestas correctas en la pantalla-->
+        <ion-col *ngIf="examen.o1 === true" >{{examen.r1}}</ion-col>  
+        <ion-col *ngIf="examen.o2 === true" >{{examen.r2}}</ion-col>
+        <ion-col *ngIf="examen.o3 === true" >{{examen.r3}}</ion-col>        
+        
+        <ion-col *ngIf="examen.rcorrecta === 'o1'" >{{examen.r1}}</ion-col>
+        <ion-col *ngIf="examen.rcorrecta === 'o2'" >{{examen.r2}}</ion-col>
+        <ion-col *ngIf="examen.rcorrecta === 'o3'" >{{examen.r3}}</ion-col>      
+      </ion-row>     
+  </ion-grid>
+    <!--- Finaliza Preguntas -->
+<hr class="hr"/>
+    <!---- Inicia Datos del Examen ----> 
+    <ion-grid class="table table-striped" >
+      <ion-row class="gris title" >
+        <ion-col>
+          <p><strong>Resultados del examen:</strong></p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="blanco title" >
+        <ion-col>
+          N° Preguntas:
+        </ion-col>
+        <ion-col>
+          {{dato.nP}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="gris title">
+        <ion-col>
+          Correctas:
+        </ion-col>
+        <ion-col>
+          {{dato.nB}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="blanco title">
+        <ion-col>
+          Incorrectas:
+        </ion-col>
+        <ion-col>
+          {{dato.nM}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="gris title">
+        <ion-col>
+          Calificacion:
+        </ion-col>
+        <ion-col >
+          {{dato.calificacion}}
+        </ion-col> 
+      </ion-row>    
+    </ion-grid>
+    <!---- Inicia Datos del Examen ----> 
+    </ion-card-content>
+    </ion-card>  
+</ion-content>

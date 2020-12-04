@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Añadir pregunta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <form>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Pregunta</ion-label>
+            <ion-textarea type="text" [(ngModel)]="poo.pregunta" name="pregunta" rows="4" cols="20"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Opcion 1</ion-label>
+            <ion-input type="text" [(ngModel)]="poo.r1" name="r1"></ion-input>
+          </ion-item>  
+          <ion-item>
+            <ion-label position="floating">Opcion 2</ion-label>
+            <ion-input type="text" [(ngModel)]="poo.r2" name="r2"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label position="floating">Opcion 3</ion-label>
+            <ion-input type="text" [(ngModel)]="poo.r3" name="r3"></ion-input>
+          </ion-item>           
+          <ion-item>
+            <ion-label>Respuesta Correcta</ion-label>
+            <ion-select interface="popover" name="rcorrecta"  [(ngModel)]="poo.rcorrecta" placeholder="selecionar">
+              <ion-select-option  value="o1">Opcion 1</ion-select-option>
+              <ion-select-option  value="o2">Opcion 2</ion-select-option>
+              <ion-select-option  value="o3">Opcion 3</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          
+          <ion-button expand="block" shape="round" (click)="addPregunta()">Save</ion-button>  
+          <ion-button expand="block" shape="round" color="danger" (click)="delete(idExamen)">Delete</ion-button>  
+          
+        </ion-list>         
+      </form>
+    </ion-card-content>
+      </ion-card>
+
+</ion-content>

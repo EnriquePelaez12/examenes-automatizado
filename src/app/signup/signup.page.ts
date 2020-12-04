@@ -16,22 +16,28 @@ export class SignupPage implements OnInit {
   confirmPassword: string;
 
   constructor(private authService: AuthService, private router: Router) { }
-
-
+  ngOnInit() {
+  }
   doRegister(){
     if(this.password == this.confirmPassword){
       this.authService.register(this.name, this.surnames, this.email, this.password, this.confirmPassword).then(auth => {
-      console.log(auth)
-      this.router.navigate(["tabs/inicio"]);
+        //this.authService.regitroDatos(this.name, this.surnames, this.email, this.password, this.confirmPassword)
+        this.authService.isAuth().subscribe(user => {
+          if (user) {
+            user.updateProfile({
+              displayName: ''
+            }).then(() => {
+             // console.log('Prueba',this.password)
+              this.router.navigate(["tabs/inicio"]);
+            }).catch((error) => console.log('error', error));
+          }
+    
+    });
       }).catch(err => console.log(err));
     }
     else{
       alert("Las contraseñas no coinciden");
     }
   }
-
-  ngOnInit() {
-  }
-
 
 }

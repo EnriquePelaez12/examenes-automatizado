@@ -9,40 +9,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-
-
-  <div class = "ion-padding">
-    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
-      <ion-card-header>
-        <ion-card-title>1º ESO</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>Nivel Bajo</ion-card-content>
-    </ion-card>
-
-    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
-      <ion-card-header>
-        <ion-card-title>2º ESO</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>Nivel Intermedio - Bajo</ion-card-content>
-    </ion-card>
-
-    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
-      <ion-card-header>
-        <ion-card-title>3º ESO</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>Nivel Intermedio - Alto</ion-card-content>
-    </ion-card>
-
-    <ion-card color="light" button=true (click)="navigateToAsignaturas()" mode="md">
-      <ion-card-header>
-        <ion-card-title>4º ESO</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>Nivel Alto</ion-card-content>
-    </ion-card>
-
-  </div>
+<ion-content class="ion-padding" >   
+  <ion-label class="title" text-wrap >
+    <h2><strong>Cursos Disponibles:</strong></h2>
+  </ion-label>
+<ion-item-sliding *ngFor='let curso of cursos'>
+  <ion-item  >
+    <ion-label text-wrap  [routerLink]="['/asignatura', curso.idCurso]" >
+      <h2><strong>Curso:</strong> {{curso.nombre}}</h2>
+      <p><strong>Descripcion:</strong> {{curso.descripcion}}</p>
+    </ion-label>
+  </ion-item>
+  <!-- <ion-icon  item-start name="create-outline"  [routerLink]="['/new-curso', curso.idCurso]" ></ion-icon> -->
+</ion-item-sliding> 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/new-curso">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+  
 </ion-content>
 
 

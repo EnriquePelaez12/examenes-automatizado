@@ -14,13 +14,13 @@ export class SuiPage implements OnInit {
   constructor(private authService: AuthService, public router: Router) { }
 
   navigateToSignup() {
-    console.log("Crear cuenta cliclado")
-    alert("Vamos a signup")
+    /*console.log("Crear cuenta cliclado")
+    alert("Vamos a signup")*/
     this.router.navigate(["signup"]);
   }
 
   navigateToLogin() {
-    console.log("Login cliclado")
+    // console.log("Login cliclado")
     //alert("Vamos a login")
     this.router.navigate(["login"]);
   }
@@ -30,8 +30,8 @@ export class SuiPage implements OnInit {
 
   loginGoogle() {
     this.authService.loginWithGoogle().then(() =>{
-      console.log("Google cliclado")
-      alert("Vamos a la app")
+      // console.log("Google cliclado")
+      // alert("Vamos a la app")
       this.router.navigate(["tabs/inicio"]);
     }).catch(err => {
       alert("Algo salió mal, contacta con soporte");

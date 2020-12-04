@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons >
+        <ion-icon name="arrow-back" [routerLink]="['/tabs/cursos']"></ion-icon>
+      </ion-buttons>
+  <ion-title>
+    Asignaturas
+  </ion-title>
+  <ion-buttons slot="end"  [routerLink]="['/']">
+    <ion-button>
+        <ion-icon name="exit-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" >
+  <ion-label class="title" text-wrap >
+    <h2><strong>Asignaturas Disponibles:</strong></h2>
+  </ion-label> 
+<ion-item-sliding *ngFor='let asignatura of asignaturas'>
+  <ion-item  >
+    <ion-label text-wrap  [routerLink]="['/tema', asignatura.idAsig]" >
+      <h2><strong>Asignatura:</strong> {{asignatura.nombre}}</h2>
+      <p><strong>Descripcion:</strong> {{asignatura.descripcion}}</p>
+    </ion-label>
+  </ion-item>
+  <!-- <ion-icon  item-start name="create-outline"  [routerLink]="['/new-asignatura', asignatura.idAsig]" ></ion-icon> -->
+</ion-item-sliding> 
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addAsignatura()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
