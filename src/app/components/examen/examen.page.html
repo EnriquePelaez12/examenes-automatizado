@@ -40,7 +40,7 @@
             a) {{ examen.r1 }}
           </ion-col>
           <ion-col >
-            <ion-checkbox type="checkbox" name="o1" color="primary"  id="o1"  [(ngModel)]="examen.o1" (click)="opcion1(examen.idExamen, examen.o1, examen.idDatosE)" ></ion-checkbox>
+            <!-- <ion-checkbox type="checkbox" name="o1" color="primary"  id="o1"  [(ngModel)]="examen.o1" (click)="opcion1(examen.idExamen, examen.o1, examen.idDatosE)" ></ion-checkbox> -->
           </ion-col>
       </ion-row>
 
@@ -49,7 +49,7 @@
           b) {{ examen.r2 }}
           </ion-col>
           <ion-col>
-            <ion-checkbox type="checkbox" name="o2" color="primary"  id="o2" [(ngModel)]="examen.o2" (click)="opcion2(examen.idExamen, examen.o2, examen.idDatosE)"></ion-checkbox>
+            <!-- <ion-checkbox type="checkbox" name="o2" color="primary"  id="o2" [(ngModel)]="examen.o2" (click)="opcion2(examen.idExamen, examen.o2, examen.idDatosE)"></ion-checkbox> -->
           </ion-col>
       </ion-row>
 
@@ -58,7 +58,7 @@
             c) {{ examen.r3 }}
           </ion-col>
           <ion-col *ngIf="examen">
-            <ion-checkbox   name="o3" color="primary"  id="o3"   [(ngModel)]="examen.o3" (click)="opcion3(examen.idExamen, examen.o3, examen.idDatosE)"></ion-checkbox>
+            <!-- <ion-checkbox   name="o3" color="primary"  id="o3"   [(ngModel)]="examen.o3" (click)="opcion3(examen.idExamen, examen.o3, examen.idDatosE)"></ion-checkbox> -->
           </ion-col>
       </ion-row>
       
@@ -69,12 +69,11 @@
   </ion-card-content>
 </ion-card> 
 
-<div *ngIf=" dato.nombre != '' ">
+<!-- <div *ngIf=" dato.nombre != '' ">
   <ion-button  expand="block" shape="round" (click)="saveExamen()">
     Finalizar
   </ion-button > 
-
-</div>
+</div> -->
 
 <div *ngIf="dato.nombre === '' " >
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

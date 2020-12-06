@@ -100,7 +100,7 @@ async todosPreguntas(){
       loading.dismiss();  
     });
   }
-  //se obtienen los datos del examen( documento)
+  //se obtienen los datos del examen( documento) CALIFICAR EXAMENES
   async saveExamen() {
   const loading = await this.loadingCtrl.create({
     message:'Añadiendo details...',

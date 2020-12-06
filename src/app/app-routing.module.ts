@@ -39,10 +39,6 @@ const routes: Routes = [
     loadChildren: () => import("./forgotpwd/forgotpwd.module").then( m => m.ForgotpwdPageModule)
   },
   {
-    path: 'asignaturas',
-    loadChildren: () => import('./asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
-  },
-  {
     path: 'tema',
     loadChildren: () => import('./components/tema/tema.module').then( m => m.TemaPageModule)
   },
@@ -134,6 +130,25 @@ const routes: Routes = [
     path: 'asignatura/:idCurso',
     loadChildren: () => import('./components/asignatura/asignatura.module').then( m => m.AsignaturaPageModule)
   },
+  {
+    path: 'home-examen',
+    loadChildren: () => import('./components/home-examen/home-examen.module').then( m => m.HomeExamenPageModule)
+  },
+  {
+    path: 'home-examen/:idDatosE',
+    loadChildren: () => import('./components/home-examen/home-examen.module').then( m => m.HomeExamenPageModule)
+  },
+  {
+    path: 'c-examen',
+    loadChildren: () => import('./components/c-examen/c-examen.module').then( m => m.CExamenPageModule)
+  },
+  {
+    path: 'c-examen/:idDatosE',
+    loadChildren: () => import('./components/c-examen/c-examen.module').then( m => m.CExamenPageModule)
+  },
+  
+
+
 
   
 ];

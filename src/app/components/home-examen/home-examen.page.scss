@@ -1,0 +1,45 @@
+.gris {
+    background-color: #eee;
+  }
+  .verde{
+    background-color: rgb(0, 255, 76);
+  }
+  .table tr:nth-child(2) {
+    background-color: #eee;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #eee;
+  }
+  
+  .blanco {
+    background-color: rgb(253, 253, 253);
+  }
+  .img{
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+   
+    
+  }
+  .title{
+    text-align: center;
+  }
+  .center{
+    text-align:center;
+}
+hr {
+  height: .25px;
+  background-color: rgb(231, 229, 229);
+  width: 95%;
+}
+
+.correcto {
+  color: green;
+  font-size: 18px;
+}
+.incorrecto {
+  color: red;
+  font-size: 18px;
+}

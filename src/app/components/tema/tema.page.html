@@ -10,7 +10,8 @@
 <ion-content class="ion-padding" > 
 
   <ion-item-sliding *ngFor='let tema of temas'>
-  <ion-item (click)="goExamen(tema.idDatosE)" >
+  <!-- <ion-item (click)="goExamen(tema.idDatosE)" >   -->
+    <ion-item (click)="goHomeExamen(tema.idDatosE)" > 
     <ion-label text-wrap >
       <h2><strong>Tema:</strong> {{ tema.nombre }}</h2>
       <p><strong>Des:</strong> {{ tema.descripcion }}</p>

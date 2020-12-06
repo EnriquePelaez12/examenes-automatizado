@@ -29,7 +29,7 @@
     <ion-grid class="table table-striped" *ngFor="let examen of examenesResueltos">
       <hr class="hr"/>
       <ion-row class="gris">
-        <p><strong>Pregunta N°:</strong></p>
+        <p><strong>Pregunta :</strong></p>
         <p *ngIf="examen.o1 === true && examen.rcorrecta === 'o1'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>
         <p *ngIf="examen.o2 === true && examen.rcorrecta === 'o2'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>
         <p *ngIf="examen.o3 === true && examen.rcorrecta === 'o3'"><ion-icon class="correcto" name="checkmark-done-outline"></ion-icon></p>

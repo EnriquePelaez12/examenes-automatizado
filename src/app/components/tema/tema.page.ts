@@ -61,6 +61,10 @@ export class TemaPage implements OnInit {
         this.router.navigate([`examen/${idDatosE}`])
 
   }
+  goHomeExamen(idDatosE){
+    this.router.navigate([`home-examen/${idDatosE}`])
+
+  }
 
 
   async done(todoId){

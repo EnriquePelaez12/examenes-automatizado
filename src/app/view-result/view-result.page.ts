@@ -49,7 +49,7 @@ export class ViewResultPage implements OnInit {
   getDatosUno(idDatosE: string):void{  
     this.viewResultService.getDatosExamen(idDatosE).subscribe(dato => {
       this.dato = dato;
-        //console.log('Datos Examen: ',dato);       
+        // console.log('Datos Examen: ',dato);       
     }); 
 }
 
@@ -62,7 +62,7 @@ async todasPreguntas(idDatosE){
   loading.present();//idDatosE: es el id del documento del examen que respondio el alumno
   this.viewResultService.getPreguntasExamen(idDatosE).subscribe(item => {//obtener lista de preguntas que respondio el alumno
     this.examenesResueltos = item;
-    console.log('JSON Preguntas: ',this.examenesResueltos);
+    // console.log('JSON Preguntas: ',this.examenesResueltos);
     loading.dismiss();  
   });
 }

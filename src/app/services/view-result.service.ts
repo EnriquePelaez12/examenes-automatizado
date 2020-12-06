@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ViewResultService {
 
-       //**** Resultado Examenes calificasion  ********/
+//**** Resultado Examenes calificasion  ********/
   resultCol: AngularFirestoreCollection<IDatosExamen>;
   resultDoc: AngularFirestoreDocument<IDatosExamen>;
   results: Observable<IDatosExamen[]>;
@@ -19,11 +19,11 @@ export class ViewResultService {
   uid = localStorage.getItem("uid");// obtenemos el id del alumno
  
   /********** Regresa las preguntas  contestadas *************** */
-  examenCol: AngularFirestoreCollection<Iexamen>;
-  examenDoc: AngularFirestoreDocument<Iexamen>;
-  examenes: Observable<Iexamen[]>;
-  examen: Observable<Iexamen>;
-  examen$: any;
+  examenDatoCol: AngularFirestoreCollection<Iexamen>;
+  examenDatoDoc: AngularFirestoreDocument<Iexamen>;
+  examenDatos: Observable<Iexamen[]>;
+  examenDato: Observable<Iexamen>;
+  examenDato$: any;
  
  
   /*
@@ -36,8 +36,8 @@ var query = citiesRef.where("state", "==", "CA");*/
     private afs:AngularFirestore,
     private route: ActivatedRoute
   ) {
-   //validamos para que nos regrese solo los examenes de alumno con su uid
-    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${this.uid}`))
+   //validamos para que nos regrese solo los examenes de alumno con su uid 'nP', '=>', '0'
+    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${this.uid}`).where("nP", ">", 0))
     this.results = this.resultCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(
@@ -68,8 +68,8 @@ var query = citiesRef.where("state", "==", "CA");*/
   }
 
   getPreguntasExamen(idDatosE){
-    this.examenCol= this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas')
-    this.examenes = this.examenCol.snapshotChanges().pipe(
+    this.examenDatoCol= this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas')
+    this.examenDatos = this.examenDatoCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(
           a =>
@@ -83,10 +83,27 @@ var query = citiesRef.where("state", "==", "CA");*/
       })    
     );
    
-    return this.examenes; //Regresamos los las preguntas del examen
+    return this.examenDatos; //Regresamos los las preguntas del examen
+  }
 
-    
-
+//para validar si ya contesto el examen
+  getAlumnosExamen(idDatosE, uid){
+    this.examenDatoCol= this.afs.collection('eResueltos', ref=> ref.where('idDatosE', '==',`${idDatosE}`).where("uid", "==", `${uid}`))
+    this.examenDatos = this.examenDatoCol.snapshotChanges().pipe(
+      map(action => { 
+        return action.map(
+          a =>
+          {
+            var data = a.payload.doc.data() as Iexamen;// sacamos el id del documento
+            data.idExamen = a.payload.doc.id;
+            return data;
+          }
+        )
+      
+      })    
+    );
+   
+    return this.examenDatos; //Regresamos los las preguntas del examen
   }
   
   getTodos(){
