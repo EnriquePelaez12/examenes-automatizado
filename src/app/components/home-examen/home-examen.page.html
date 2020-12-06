@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-buttons >
+    <!-- <ion-buttons >
         <ion-icon name="arrow-back" [routerLink]="['/tabs/cursos']"></ion-icon>
-      </ion-buttons>
+      </ion-buttons> -->
   <ion-title>
     Detalles Del Examen
   </ion-title>
-  <ion-buttons slot="end"  [routerLink]="['/']">
+  <ion-buttons slot="end"  [routerLink]="['/tabs/inicio']">
     <ion-button>
-        <ion-icon name="exit-outline"></ion-icon>
+        INICO
     </ion-button>
   </ion-buttons>
   </ion-toolbar>
@@ -27,10 +27,7 @@
           </ion-label>
         </ion-item>
       </ion-item-sliding> 
-      <ion-button (click)="nuevoExamen()" expand="block" fill="clear" color="success" shape="round">
-        Nuevo Examen
-      </ion-button>
-      <br>
+
 <!-- 
       <div *ngFor="let p of preguntasResueltas">
         <ion-label text-wrap class="title" >
@@ -46,8 +43,20 @@
           Generar e ir al examen
       </ion-button>
       </div>
+      <div *ngIf="examencontestado() === false">
+        <ion-button  expand="block" fill="clear" color="primary" shape="round">
+          Examen Realizado
+      </ion-button>
+      </div>
+
+      
         
 
       </ion-card-content>
   </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="nuevoExamen()" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

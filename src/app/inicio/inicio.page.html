@@ -10,10 +10,13 @@
 </ion-header>
 
 <ion-content class="ion-padding" >   
+
+  
   <ion-label class="title" text-wrap >
     <h2><strong>Resultados de Examenes:</strong></h2>
   </ion-label>
 <ion-item-sliding>
+ 
   <ion-item  *ngFor='let examen of vExamenes'>
     <ion-label text-wrap  (click)="goExamen(examen.idDatosE)" >
       <h2><strong>Tema:</strong> {{examen.nombreTema}}</h2>

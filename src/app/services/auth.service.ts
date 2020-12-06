@@ -66,6 +66,13 @@ export class AuthService {
   }
 
   logout(){
+    
+    localStorage.removeItem('uid'); 
+    localStorage.removeItem('name'); 
+    localStorage.removeItem('surnames'); 
+    localStorage.removeItem('email'); 
+    localStorage.removeItem('password'); 
+    localStorage.removeItem('idRDatos'); 
     //AngularFire ha eliminado la propiedad auth
     //this.AFauth.auth.signOut().then(() => {
       this.AFauth.signOut().then(() => {

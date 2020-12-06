@@ -63,17 +63,11 @@
       </ion-row>
       
       <ion-row >    
-        <ion-icon  item-start name="create-outline"  (click)="editarP(examen.idExamen, examen.idDatosE)" ></ion-icon>    
+        <!-- <ion-icon  item-start name="create-outline"  (click)="editarP(examen.idExamen, examen.idDatosE)" ></ion-icon>     -->
       </ion-row>
 </ion-grid>
   </ion-card-content>
 </ion-card> 
-
-<!-- <div *ngIf=" dato.nombre != '' ">
-  <ion-button  expand="block" shape="round" (click)="saveExamen()">
-    Finalizar
-  </ion-button > 
-</div> -->
 
 <div *ngIf="dato.nombre === '' " >
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

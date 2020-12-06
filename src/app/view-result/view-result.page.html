@@ -53,7 +53,8 @@
         <!-- validamos y mostramos a forma de que se puedan visializar las respuestas correctas en la pantalla-->
         <ion-col *ngIf="examen.o1 === true" >{{examen.r1}}</ion-col>  
         <ion-col *ngIf="examen.o2 === true" >{{examen.r2}}</ion-col>
-        <ion-col *ngIf="examen.o3 === true" >{{examen.r3}}</ion-col>        
+        <ion-col *ngIf="examen.o3 === true" >{{examen.r3}}</ion-col> 
+        <ion-col *ngIf="examen.o3 === false && examen.o2 === false && examen.o1 === false" >--</ion-col> 
         
         <ion-col *ngIf="examen.rcorrecta === 'o1'" >{{examen.r1}}</ion-col>
         <ion-col *ngIf="examen.rcorrecta === 'o2'" >{{examen.r2}}</ion-col>

@@ -24,6 +24,7 @@ export class InicioPage {
   uid = null;
   idTema= null;
   idDatosE= null;
+ 
 
   constructor(
     private viewResultService: ViewResultService,
@@ -37,12 +38,6 @@ export class InicioPage {
 
   ngOnInit() {
     this.obtenerDatosU();
-    this.viewResultService.getTodos().subscribe(vExamenes => {      
-      this.vExamenes = vExamenes;
-      //console.log(this.vExamenes);
-    });
-    this.idTema = this.route.snapshot.params['idDatosE'];
-    //console.log('idDatosE: ', this.idTema);    
   }
 
   logout(){
@@ -55,8 +50,8 @@ export class InicioPage {
         //console.log(idDatosE);
   }
 
-  obtenerDatosU(){
-    this.authservice.isAuth().subscribe(auth =>{
+  async obtenerDatosU(){
+    await this.authservice.isAuth().subscribe(auth =>{
       if(auth){
         this.uid = auth.uid;//obtenemos el id del usuario         
          //console.log(this.uid);
@@ -78,10 +73,15 @@ export class InicioPage {
       this.poo.surnames = examen.surnames;
       this.poo.email = examen.email; 
       //Guardar parametros en el local storange
-      localStorage.setItem('uid', this.uid); 
+      localStorage.setItem('uid', examen.uid); 
       localStorage.setItem('name', examen.name); 
       localStorage.setItem('surnames', examen.surnames); 
       localStorage.setItem('email', examen.email); 
+      //se manda el id para que nos actualice la sesion
+      this.viewResultService.getExamenesContestados(examen.uid).subscribe(vExamenes => {      
+        this.vExamenes = vExamenes;
+        //console.log(this.vExamenes);
+      });
       loading.dismiss();
     });
 }

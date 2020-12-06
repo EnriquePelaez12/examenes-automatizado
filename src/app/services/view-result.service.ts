@@ -15,9 +15,7 @@ export class ViewResultService {
   resultDoc: AngularFirestoreDocument<IDatosExamen>;
   results: Observable<IDatosExamen[]>;
   result: Observable<IDatosExamen>;
-  result$: any;
-  uid = localStorage.getItem("uid");// obtenemos el id del alumno
- 
+  result$: any; 
   /********** Regresa las preguntas  contestadas *************** */
   examenDatoCol: AngularFirestoreCollection<Iexamen>;
   examenDatoDoc: AngularFirestoreDocument<Iexamen>;
@@ -36,8 +34,9 @@ var query = citiesRef.where("state", "==", "CA");*/
     private afs:AngularFirestore,
     private route: ActivatedRoute
   ) {
+    var uid = localStorage.getItem("uid");// obtenemos el id del alumno
    //validamos para que nos regrese solo los examenes de alumno con su uid 'nP', '=>', '0'
-    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${this.uid}`).where("nP", ">", 0))
+    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${uid}`).where("nP", ">", 0))
     this.results = this.resultCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(
@@ -108,6 +107,26 @@ var query = citiesRef.where("state", "==", "CA");*/
   
   getTodos(){
     return this.results;
+  }
+
+  //funcion que actualiza los datos en la pantalla de inicio nos trae los examenes que han sido contestados
+  getExamenesContestados(uid){
+    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${uid}`).where("nP", ">", 0))
+    this.results = this.resultCol.snapshotChanges().pipe(
+      map(action => { 
+        return action.map(
+          a =>
+          {
+            var data = a.payload.doc.data() as IDatosExamen;// sacamos el id del documento
+            data.idDatosE = a.payload.doc.id;
+            return data;
+          }
+        )
+      
+      })    
+    );
+   
+    return this.results; //Regresamos los las preguntas del examen
   }
 
   getTodo(idDatosE){
