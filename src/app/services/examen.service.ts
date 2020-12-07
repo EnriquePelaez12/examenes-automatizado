@@ -47,9 +47,28 @@ export class ExamenService {
     );
   }
 
+  //obtenemos toda la lista de los examenes que pertenescan a ese tema
+  getDatosExamen(idTema){
+    this.examenDatoCol= this.afs.collection('examenes', ref=> ref.where('idTema', '==',`${idTema}`))
+    this.examenesDato = this.examenDatoCol.snapshotChanges().pipe(
+      map(action => { 
+        return action.map(
+          a =>
+          {
+            var data = a.payload.doc.data() as IDatosExamen;// sacamos el id del documento
+            data.idDatosE = a.payload.doc.id;
+            return data;
+          }
+        )
+      
+      })    
+    );
+   
+    return this.examenesDato; //Regresamos los las preguntas del examen
+  }
 
-  //Obtener datos del examen
-  getDatosExamen(idDatosE: string){
+  // Obtener datos del examen
+  getDatosExamenUno(idDatosE: string){
     this.examenDatoDoc = this.afs.doc<IDatosExamen>(`examenes/${idDatosE}`);
     return this.examenDato = this.examenDatoDoc.snapshotChanges().pipe(map(action => {
       if (action.payload.exists === false) {
@@ -60,14 +79,36 @@ export class ExamenService {
         return data;
       }
     }));
-  }
-  
+  } 
 
   getTodos(){
     return this.examenes;
   }
 
-  getTodo(idExamen, idDatosE){//    this.afs.collection('examenes').doc(this.idDatosE).collection('lista').doc(this.idExamen).set({
+  //obtener lista de examenes en blanco
+  /*
+  getExamenesContestados(uid){
+    this.idDatosE= this.afs.collection('examenes').doc(this.idDatosE).collection('lista')
+    this.examenes = this.idDatosE.snapshotChanges().pipe(
+      map(action => { 
+        return action.map(
+          a =>
+          {
+            var data = a.payload.doc.data() as IDatosExamen;// sacamos el id del documento
+            data.idDatosE = a.payload.doc.id;
+            return data;
+          }
+        )
+      
+      })    
+    );
+   
+    return this.examenes; //Regresamos los las preguntas del examen
+  }
+*/
+  
+
+getTodo(idExamen, idDatosE){//    this.afs.collection('examenes').doc(this.idDatosE).collection('lista').doc(this.idExamen).set({
     this.examenDoc = this.afs.doc<Iexamen>(`examenes/${idDatosE}/lista/${idExamen}`);
     return this.examen = this.examenDoc.valueChanges();
   }

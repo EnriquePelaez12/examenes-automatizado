@@ -14,6 +14,7 @@ import { IDatosExamen } from '../../models/curso';
 export class DatosExamenPage implements OnInit {
   poo:IDatosExamen = {
     nombre:'',
+    idTema:'',
     calificacion:'',
     nB:'',
     nM:'',
@@ -58,11 +59,13 @@ export class DatosExamenPage implements OnInit {
         loading.present();
         //const idDatosE = this.afs.createId();
         //console.log('clic D Examen',this.idDatosE);
-         // console.log('Datos Examen: ',dato);         
-        this.temaService.getUnTema(this.idDatosE).subscribe(tema => {//obtenemos el id del tema para sacar el nombre del tema
+         // console.log('Datos Examen: ',dato);  
+         var idTema = localStorage.getItem("idTema");// obtenemos el id del tema desdel local     
+        this.temaService.getUnTema(idTema).subscribe(tema => {//obtenemos el id del tema para sacar el nombre del tema
           tema = tema;            
         this.afs.collection('examenes').doc(this.idDatosE).set({//enviamos los datos para guardarlos en la bd
           'idDatosE': this.idDatosE,
+          'idTema': idTema,
           'nombre':this.poo.nombre,
           'calificacion':this.poo.calificacion,
           'nB':this.poo.nB,

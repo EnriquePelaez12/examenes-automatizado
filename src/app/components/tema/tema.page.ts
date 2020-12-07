@@ -62,6 +62,7 @@ export class TemaPage implements OnInit {
 
   }
   goHomeExamen(idDatosE){
+    localStorage.setItem('idTema', idDatosE); //guardar en el local
     this.router.navigate([`home-examen/${idDatosE}`])
 
   }

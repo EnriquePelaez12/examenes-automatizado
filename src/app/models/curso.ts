@@ -29,6 +29,7 @@ export interface IPregunta{
   }
   export interface IDatosExamen{
     idDatosE?:string;
+    idTema?:string;
     uid?: string;
     nombre:string;
     calificacion:string;

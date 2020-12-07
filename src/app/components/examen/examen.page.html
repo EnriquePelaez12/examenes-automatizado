@@ -17,9 +17,9 @@
     <ion-item >
       <ion-label text-wrap class="title" >
         <h2><strong>Tema:</strong></h2>
-        <h2>{{ dato.nombre}} </h2>
+        <h2>{{ dato.nombreTema}} </h2>
         <p><strong>Examen:</strong></p>
-        <p>{{ dato.nombreTema}}</p>
+        <p>{{ dato.nombre}}</p>
       </ion-label>
     </ion-item>
   </ion-item-sliding>  
@@ -68,6 +68,11 @@
 </ion-grid>
   </ion-card-content>
 </ion-card> 
+<div *ngIf=" dato.nombre != ''">
+  <ion-button  routerLink="/tabs/inicio">
+    Guardar Examen creado
+  </ion-button>
+</div>
 
 <div *ngIf="dato.nombre === '' " >
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -78,7 +83,7 @@
 </div>
 
   <ion-fab  *ngIf=" dato.nombre != ''" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="new()">
+    <ion-fab-button (click)="newPregunta()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

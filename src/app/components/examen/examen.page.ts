@@ -15,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
   providers:[ExamenService]//agregamos el service
 })
 export class ExamenPage implements OnInit {
-  //dato:IDatosExamen[];
+  datos1:IDatosExamen[];
   examenes: Iexamen[];
   poo:Iexamen = {
     pregunta: '',
@@ -55,7 +55,7 @@ export class ExamenPage implements OnInit {
 
   ngOnInit() {      
     this.idDatosE = this.route.snapshot.params['idDatosE'];    
-  console.log('idDatoE', this.idDatosE);
+  // console.log('idDatoE 2', this.idDatosE);
   this.todosPreguntas();
  // this.saveExamen();
   }
@@ -78,9 +78,9 @@ export class ExamenPage implements OnInit {
     })
   }
 */
-      //obtiene datos de un examen
+      //obtiene datos de un examen RREVISAR
     getDatosExamenP(idDatosE: string):void{  
-      this.examenService.getDatosExamen(idDatosE).subscribe(dato => {
+      this.examenService.getDatosExamenUno(idDatosE).subscribe(dato => {
         this.dato = dato;
          // console.log('Datos Examen: ',dato); 
       
@@ -100,260 +100,17 @@ async todosPreguntas(){
       loading.dismiss();  
     });
   }
-  //se obtienen los datos del examen( documento) CALIFICAR EXAMENES
-  async saveExamen() {
-  const loading = await this.loadingCtrl.create({
-    message:'Añadiendo details...',
-    spinner: 'crescent',
-    showBackdrop:true
-  });
-  loading.present();   
-  const idRDatos  = this.afs.createId();//Obtener datos del examen
-  this.examenService.getDatosExamen(this.idDatosE).subscribe(datos => {
-    datos = datos;
-    //console.log('datos: ',datos);
-      localStorage.setItem('idRDatos', idRDatos);  
-      this.afs.collection('eResueltos').doc(idRDatos).set({//enviamos los datos para guardarlos en la bd en la coleccion Resultados
-        'idDatosE': datos.idDatosE,
-        'uid': this.uid,
-        'nombre':datos.nombre,
-        'calificacion':datos.calificacion,
-        'nB':datos.nB,
-        'nM':datos.nM, 
-        'nP':datos.nP, 
-        'nombreTema':datos.nombreTema,
-              
-      }).then(()=>{
-        loading.dismiss();
-        this.toast('Guardado','success');//enviamos los parametros a la funcion
-        this.router.navigate(['/examen'])   
-        var idRDatos = localStorage.getItem("idRDatos"); 
-        //console.log('idRDatos: ',idRDatos);    
-        this.savePreguntas(idRDatos);
 
-      }).catch((error)=>{//identificamos el error y lo mandamos en el alert
-        loading.dismiss();
-        this.toast(error.message, 'danger')
-      });
-      
-  });
-}
-
-  async savePreguntas(idRDatos){
-   //funcion  para guardar las preguntas ya contestadas
-        const loading = await this.loadingCtrl.create({
-          message:'Añadiendo p...',
-          spinner: 'crescent',
-          showBackdrop:true
-        });
-        loading.present();   
-        this.examenService.getTodos().subscribe(item => {//obtenemos las preguntas contestadas en formato Json
-          this.examenes = item;
-          var nPregunta = this.examenes.length;
-          console.log('Preguntas a Calificar: ', this.examenes);
-          console.log('Tamaño: ', nPregunta);
-          var acierto = 0; 
-          //Se califica el examen
-          for (let examen of this.examenes) {//iteramos el Json y se guarda
-            if (examen.o1 === true && examen.rcorrecta === 'o1' ) {              
-              acierto += 1;
-              // console.log('correcta 1', value);              
-            } else if (examen.o2 === true && examen.rcorrecta === 'o2') {
-              acierto += 1;
-              // console.log('correcta 2', value);              
-            } else if(examen.o3 === true && examen.rcorrecta === 'o3') {              
-              acierto += 1;
-            //  console.log('correcta 3', value);
-            } else {       
-            }  
-          }   
-          /**** se califica el examen ****/
-          var nMalas = nPregunta-acierto;
-          var calificacion = (10/nPregunta)*acierto;
-          //console.log('N Malas',nMalas); 
-          //console.log('N aciertos',acierto);  
-          //console.log('calificacion:',calificacion);     
-          //se guardan las preguntas del examen      
-          this.calificar(idRDatos, nPregunta, nMalas, acierto, calificacion);
-          // this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-          
-          for (let examen of this.examenes) {//iteramos el Json y se guarda                
-          this.afs.collection('eResueltos').doc(idRDatos).collection('preguntas').doc(examen.idExamen).set({//enviamos los datos para guardarlos en la bd
-          //'idDatosE': examen.idDatosE,
-          'idExamen': examen.idExamen,
-          'uid':this.uid,
-          'pregunta': examen.pregunta,
-          'r1':examen.r1, 
-          'r2':examen.r2,
-          'r3':examen.r3,
-          'o1':examen.o1,
-          'o2':examen.o2,
-          'o3':examen.o3,
-          'rcorrecta':examen.rcorrecta,
-        }).then(()=>{
-          loading.dismiss();
-          this.toast('Guardado','success');//enviamos los parametros a la funcion
-          this.router.navigate(['/examen'])
-  
-        }).catch((error)=>{//identificamos el error y lo mandamos en el alert
-          loading.dismiss();
-          this.toast(error.message, 'danger')
-        });          
-          }
-    });    
-  }  
-  
-  async calificar(idRDatos, nPregunta, nMalas, acierto, calificacion){  
-    const loading = await this.loadingCtrl.create({
-      message:'Añadiendo details...',
-      spinner: 'crescent',
-      showBackdrop:true
-    });
-    loading.present();   
-    this.examenService.getDatosExamen(this.idDatosE).subscribe(datos => {
-      datos = datos;
-      //console.log('datos: ',datos);
-        //localStorage.setItem('idRDatos', idRDatos);  
-        this.afs.collection('eResueltos').doc(idRDatos).set({//enviamos los datos para guardarlos en la bd
-          'idDatosE': datos.idDatosE,
-          'uid': this.uid,
-          'nombre':datos.nombre,
-          'calificacion':calificacion,
-          'nB':acierto,
-          'nM':nMalas,  
-          'nP':nPregunta,
-          'nombreTema':datos.nombreTema,              
-        }).then(()=>{
-          loading.dismiss();
-          this.toast('Guardado','success');//enviamos los parametros a la funcion
-          this.router.navigate(['/tabs/inicio'])   
-          //var idRDatos = localStorage.getItem("idRDatos"); 
-          //console.log('idRDatos: ',idRDatos);    
-          //this.savePreguntas(idRDatos);
-  
-        }).catch((error)=>{//identificamos el error y lo mandamos en el alert
-          loading.dismiss();
-          this.toast(error.message, 'danger')
-        });
-        
-    });
-    
-  }
-  
   
   addDatos(){
+    //obtenemos la variable del storangue para saber a que tema corresponde y obtener el nombre del tema
+    //var idDatosE = localStorage.getItem("idTema");// obtenemos el id del alumno
     this.router.navigate([`/datos-examen/${this.idDatosE}`])
 
   }
 
-// opciones de chekbox
-  async opcion1(idExamen, o1, idDatosE){
-   // console.log(idExamen,o1);//this.afs.doc < Company > (`companies/${companyID}`).collection('employees').valueChanges();
-    if (o1 === false) {//this.afs.collection('examenes').doc('examen').collection('lista').doc(this.idExamen).set({
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:true,//marcamos en la bd la opcion verdadera y las demas se marcan como false
-        o2:false,
-        o3:false
-      })
-      .then(()=>{
 
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    } else {
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:false,//marcamos en la bd la opcion verdadera y las demas se marcan como false
-        o2:false,
-        o3:false
-      })
-      .then(()=>{
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    }
-    
-    
-  }
-
-  async opcion2(idExamen, o2, idDatosE){
-    console.log(o2);
-    if (o2 === false) {
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:false,//marcamos en la bd la opcion verdadera y las demas se marcan como false
-        o2:true,
-        o3:false
-      })
-      .then(()=>{
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    } else {
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:false,
-        o2:false,
-        o3:false
-      })
-      .then(()=>{
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    }
-    
-    
-  }
-
-  async opcion3(idExamen, o3, idDatosE){
-    console.log(o3);
-    if (o3 === false) {
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:false,
-        o2:false,
-        o3:true
-      })
-      .then(()=>{
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    } else {
-      this.afs.collection('examenes').doc(idDatosE).collection('lista').doc(idExamen).update({
-        o1:false,
-        o2:false,
-        o3:false
-      })
-      .then(()=>{
-        this.toast('Seleccionado','success')
-      })
-      .catch((error)=>{
-        this.toast(error.message, 'danger')
-  
-      })
-      
-    }
-    
-    
-  }
-
-  new(){
+  newPregunta(){
    // this.router.navigate([`/new-examen`])
     this.router.navigate([`/new-examen/${this.idDatosE}`])
     console.log(this.idDatosE);

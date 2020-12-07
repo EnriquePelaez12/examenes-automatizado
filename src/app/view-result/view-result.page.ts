@@ -49,7 +49,7 @@ export class ViewResultPage implements OnInit {
   getDatosUno(idDatosE: string):void{  
     this.viewResultService.getDatosExamen(idDatosE).subscribe(dato => {
       this.dato = dato;
-        // console.log('Datos Examen: ',dato);       
+      console.log('Datos Examen: ',dato);       
     }); 
 }
 
@@ -65,6 +65,40 @@ async todasPreguntas(idDatosE){
     // console.log('JSON Preguntas: ',this.examenesResueltos);
     loading.dismiss();  
   });
+}
+
+
+async delete(idResuelto) {
+  const loading = await this.loadingCtrl.create({
+    message: 'Eliminando',
+    spinner: 'bubbles',
+    showBackdrop: true
+  });
+  await loading.present();
+  // this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas').doc(idExamen).update({
+    //ref=> ref.where('uid', '==',`${this.uid}`)
+
+  this.afs.collection('eResueltos').doc(idResuelto).delete()
+  .then(()=>{
+    loading.dismiss();
+    this.toast('examen eliminado correctamente','success')
+    this.router.navigate(['tabs/inicio'])
+  })
+  .catch((error)=>{
+    loading.dismiss();
+    this.toast(error.message, 'danger')
+
+  })
+}
+
+async toast(msg, status) {//funcion para mostrar los mensajes de alertas
+  const toast = await this.toastr.create({
+    message: msg,
+    color: status,
+    duration: 2000,      
+    position: 'top',
+  });
+  toast.present();
 }
 
 
