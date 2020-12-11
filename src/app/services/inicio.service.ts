@@ -23,7 +23,7 @@ export class InicioService {
 
   // ,ref => ref.orderBy('createdAt', 'desc');
 
-  getExamenesContestados(uid){
+  getExamenesContestados(uid){//ref=> ref.orderBy("pregunta")
     this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${uid}`));
     this.results = this.resultCol.snapshotChanges().pipe(
       map(action => { 

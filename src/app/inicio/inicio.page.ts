@@ -62,7 +62,7 @@ export class InicioPage {
 
   async loadTodo(uid){
     const loading = await this.loadingController.create({
-      message:'Cargando 1 ...',
+      message:'Cargando...',
       spinner: 'crescent',
       showBackdrop:true
     });
