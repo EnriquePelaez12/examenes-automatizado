@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IDatosExamen } from '../models/curso';
-import { ViewResultService } from '../services/view-result.service';//no se necesita instalar nada para ToastController y LoadingController
 import { AlumnosInterface } from '../models/user';
+import { InicioService } from '../services/inicio.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class InicioPage {
  
 
   constructor(
-    private viewResultService: ViewResultService,
+    private inicioService: InicioService,
     private loadingController: LoadingController,
     private router: Router,
     private toastr: ToastController,
@@ -62,13 +62,13 @@ export class InicioPage {
 
   async loadTodo(uid){
     const loading = await this.loadingController.create({
-      message:'Cargando...',
+      message:'Cargando 1 ...',
       spinner: 'crescent',
       showBackdrop:true
     });
     loading.present();   
     this.authservice.getTodo(uid).subscribe(examen =>{
-      //console.log(examen)
+      console.log(examen)
       this.poo.name = examen.name;
       this.poo.surnames = examen.surnames;
       this.poo.email = examen.email; 
@@ -78,7 +78,7 @@ export class InicioPage {
       localStorage.setItem('surnames', examen.surnames); 
       localStorage.setItem('email', examen.email); 
       //se manda el id para que nos actualice la sesion
-      this.viewResultService.getExamenesContestados(examen.uid).subscribe(vExamenes => {      
+      this.inicioService.getExamenesContestados(examen.uid).subscribe(vExamenes => {      
         this.vExamenes = vExamenes;
         //console.log(this.vExamenes);
       });

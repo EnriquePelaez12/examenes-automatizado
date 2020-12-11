@@ -31,7 +31,7 @@ export class ExamenService {
   ) {/*db.collection("Messages").doc("someItemId").collection("itemMessages")*/
   this.idDatosE = this.route.snapshot.params['idDatosE'];
     //console.log(this.idDatosE);
-    this.examenCol= this.afs.collection('examenes').doc(this.idDatosE).collection('lista')
+    this.examenCol= this.afs.collection('examenes').doc(this.idDatosE).collection('lista', ref=> ref.orderBy("pregunta"))
     this.examenes = this.examenCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(

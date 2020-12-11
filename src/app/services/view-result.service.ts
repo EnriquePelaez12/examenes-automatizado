@@ -67,7 +67,7 @@ var query = citiesRef.where("state", "==", "CA");*/
   }
 
   getPreguntasExamen(idDatosE){
-    this.examenDatoCol= this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas')
+    this.examenDatoCol= this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas', ref=> ref.orderBy("pregunta"))
     this.examenDatos = this.examenDatoCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(
@@ -111,7 +111,7 @@ var query = citiesRef.where("state", "==", "CA");*/
 
   //funcion que actualiza los datos en la pantalla de inicio nos trae los examenes que han sido contestados
   getExamenesContestados(uid){
-    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${uid}`).where("nP", ">", 0))
+    this.resultCol= this.afs.collection('eResueltos', ref=> ref.where('uid', '==',`${uid}`).where("estatus", "==", "contestado"))
     this.results = this.resultCol.snapshotChanges().pipe(
       map(action => { 
         return action.map(

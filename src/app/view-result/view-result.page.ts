@@ -49,7 +49,7 @@ export class ViewResultPage implements OnInit {
   getDatosUno(idDatosE: string):void{  
     this.viewResultService.getDatosExamen(idDatosE).subscribe(dato => {
       this.dato = dato;
-      console.log('Datos Examen: ',dato);       
+      // console.log('Datos Examen: ',dato);       
     }); 
 }
 
@@ -77,11 +77,18 @@ async delete(idResuelto) {
   await loading.present();
   // this.afs.collection('eResueltos').doc(idDatosE).collection('preguntas').doc(idExamen).update({
     //ref=> ref.where('uid', '==',`${this.uid}`)
+    // this.afs.collection('eResueltos').doc(idResuelto);
+    this.viewResultService.getPreguntasExamen(this.idDatosE).subscribe(item => {//obtener lista de preguntas que respondio el alumno
+      this.examenesResueltos = item;
+      for (let index = 0; index <= this.examenesResueltos.length; index++) {
+        const element = this.examenesResueltos[index];
+        // console.log('Prueba delete',element.idExamen)
+        
 
-  this.afs.collection('eResueltos').doc(idResuelto).delete()
+  this.afs.collection('eResueltos').doc(idResuelto).collection('preguntas').doc(element.idExamen).delete()
   .then(()=>{
     loading.dismiss();
-    this.toast('examen eliminado correctamente','success')
+    // this.toast('examen eliminado correctamente','success')
     this.router.navigate(['tabs/inicio'])
   })
   .catch((error)=>{
@@ -90,6 +97,45 @@ async delete(idResuelto) {
 
   })
 }
+});
+}
+
+async deleteCol(idResuelto) {
+  const loading = await this.loadingCtrl.create({
+    message: 'Eliminando',
+    spinner: 'bubbles',
+    showBackdrop: true
+  });
+  await loading.present();
+this.afs.collection('eResueltos').doc(idResuelto).delete()
+.then(()=>{
+  loading.dismiss();
+  this.toast('examen eliminado correctamente','success')
+  // this.delete(idResuelto)
+  this.router.navigate(['tabs/inicio'])
+})
+.catch((error)=>{
+  loading.dismiss();
+  this.toast(error.message, 'danger')
+
+})
+}
+
+
+async cambiarEstatus(idResuelto){
+  console.log(idResuelto);
+    this.afs.collection('eResueltos').doc(idResuelto).update({
+      estatus:'E'
+    })
+    .then(()=>{
+      this.toast('Actualizado','success')
+      this.router.navigate(['tabs/inicio'])
+    })
+    .catch((error)=>{
+      this.toast(error.message, 'danger')
+      console.log(error.message)
+    })
+    }
 
 async toast(msg, status) {//funcion para mostrar los mensajes de alertas
   const toast = await this.toastr.create({

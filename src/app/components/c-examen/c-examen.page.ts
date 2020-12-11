@@ -96,7 +96,7 @@ export class CExamenPage implements OnInit {
     datos = datos;
       localStorage.setItem('idRDatos', idRDatos);  
       this.afs.collection('eResueltos').doc(idRDatos).set({//enviamos los datos para guardarlos en la bd en la coleccion Resultados
-        'idDatosE': datos.idDatosE,
+        // 'idDatosE': datos.idDatosE,
         'idResuelto':idRDatos,
         'uid': this.uid,
         'nombre':datos.nombre,
@@ -111,6 +111,7 @@ export class CExamenPage implements OnInit {
         var idRDatos = localStorage.getItem("idRDatos"); 
         //console.log('idRDatos: ',idRDatos);    
         this.saveCopiaPreguntas(idRDatos);//se envia el id para guardar dentro del documento en usa subcoleccion las preguntas
+        // this.saveBitacora(datos.idDatosE);
       }).catch((error)=>{//identificamos el error y lo mandamos en el alert
         loading.dismiss();
         this.toast(error.message, 'danger')
@@ -119,6 +120,26 @@ export class CExamenPage implements OnInit {
 }
 /******************************* Termina funcion  ******************************************************* */
 
+
+//====================================================================================================================
+//Guarda la bitacora del examen esta en estacoleccion se guardaran los id de los alumnos que ya contestaron el examen
+//====================================================================================================================
+// async saveBitacora(idDatosE) {
+//   const loading = await this.loadingCtrl.create({
+//     message:'Cargando...',
+//     spinner: 'crescent',
+//     showBackdrop:true
+//   });
+//   loading.present();   
+//       this.afs.collection('examenes').doc(idDatosE).collection('alumnos').doc(this.uid).set({//enviamos los datos para guardarlos en la bd en la coleccion Resultados
+//         'uid': this.uid,
+//       }).then(()=>{
+//         loading.dismiss();
+//       }).catch((error)=>{//identificamos el error y lo mandamos en el alert
+//         loading.dismiss();
+//         this.toast(error.message, 'danger')
+//       });
+// }
 /***************************************************************************************************************
  * Esta funcion recibe el id del documento donde anteriormente se guardo el documento de los datos de un examen
  *posteriormente se obtien las preguntas de la coleccion examen y se guardan en rexamen y es alli donde el alumno
@@ -234,12 +255,12 @@ async guardarCalificacion(idRDatos, nPregunta, nMalas, acierto, calificacion){
     showBackdrop:true
   });
   loading.present();   
-  this.viewResultService.getDatosExamen(idRDatos).subscribe(datoRespuesta => {
+  this.calExamenService.getDatosCExamen(idRDatos).subscribe(datoRespuesta => {
     datoRespuesta = datoRespuesta;
     console.log('datos: ',datoRespuesta);
       //localStorage.setItem('idRDatos', idRDatos);  
       this.afs.collection('eResueltos').doc(idRDatos).set({//enviamos los datos para guardarlos en la bd
-        'idDatosE': this.idDatosE,
+        // 'idDatosE': this.idDatosE,
         'idResuelto':idRDatos,
         'uid': this.uid,
         'nombre':datoRespuesta.nombre,
@@ -247,7 +268,8 @@ async guardarCalificacion(idRDatos, nPregunta, nMalas, acierto, calificacion){
         'nB':acierto,
         'nM':nMalas,  
         'nP':nPregunta,
-        'nombreTema':datoRespuesta.nombreTema,              
+        'nombreTema':datoRespuesta.nombreTema, 
+        // 'createdAt': Date.now()       
       }).then(()=>{
         loading.dismiss();
         this.toast('Guardado','success');//enviamos los parametros a la funcion

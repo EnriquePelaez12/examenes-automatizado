@@ -66,6 +66,19 @@ export class CExamenService {
         }
       }));
     }
+
+    getDatosCExamen(idDatosE: string){
+      this.resultDoc = this.afs.doc<IDatosExamen>(`eResueltos/${idDatosE}`);
+      return this.result = this.resultDoc.snapshotChanges().pipe(map(action => {
+        if (action.payload.exists === false) {
+          return null;
+        } else {
+          const data = action.payload.data() as IDatosExamen;
+          data.idDatosE = action.payload.id;
+          return data;
+        }
+      }));
+    }
       
     getCopiaTodos(){
       return this.examenes;
