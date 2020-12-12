@@ -22,18 +22,18 @@
         <ion-grid *ngFor="let dato of datosExam">
           <ion-row>
             <ion-col>
-              <h2><strong>Examen:</strong></h2>
+              <h2><strong>Examen: </strong>  {{dato.nombre}}</h2>
             </ion-col>
-            <ion-col >
+            <!-- <ion-col >
               <h2> {{dato.nombre}} </h2>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
           <ion-row>
             <ion-col>
-              <p><strong> Tema:</strong></p>
+              <h2><strong> Tema: </strong>{{dato.nombreTema}}</h2>
             </ion-col>
             <ion-col >
-              <p> {{dato.nombreTema}}</p>
+              <p> </p>
             </ion-col>
           </ion-row>
           <ion-row>
